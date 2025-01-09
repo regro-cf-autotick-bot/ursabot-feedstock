@@ -10,7 +10,7 @@ source:
   sha256: 91c4577083955af239d6deb938c28b0dd49d9577759866dba0abb5e56be2ccd3
 
 build:
-  number: 0
+  number: 1
   noarch: python
   entry_points:
     - ursabot = ursabot.cli:ursabot
@@ -19,7 +19,7 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
     - setuptools_scm
   run:
     - buildbot
@@ -33,7 +33,7 @@ requirements:
     - docker-py
     - docker-map
     - dockerpty
-    - python >=3.6
+    - python >={{ python_min }}
     - python-dotenv
     - ruamel.yaml
     - tabulate
@@ -44,6 +44,8 @@ requirements:
     - typeguard
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - ursabot
   commands:
